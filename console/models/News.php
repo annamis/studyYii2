@@ -35,11 +35,6 @@ class News
         $sql = 'UPDATE news SET status = ' . self::STATUS_SEND .
                 ' WHERE status = ' . self::STATUS_NOT_SEND;
         return Yii::$app->db->createCommand($sql)->execute();
-        
-//        $sql = "UPDATE news SET status=:column1, column2=:column2 WHERE id=:id"
-//        Yii::$app->db->createCommand()
-//                ->bindValue(':id', your_id)
-//                ->execute();
     }
 
 }

@@ -3,6 +3,7 @@
 namespace console\models;
 
 use Yii;
+use console\models\Employee;
 
 /**
  * @author anna
@@ -26,6 +27,25 @@ class Sender
                     ->setFrom('testannasmail@gmail.com')
                     ->setTo($subscriber['email'])
                     ->setSubject('Тема сообщения')
+                    ->send();
+            if ($result) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+    
+        public static function send($employees, $date)
+    {
+        
+        $count = 0;
+        foreach ($employees as $employee) {
+            $result = Yii::$app->mailer->compose('/mailer/salary', [
+                'employee' => $employee,
+                'date' => $date])
+                    ->setFrom('testannasmail@gmail.com')
+                    ->setTo($employee['email'])
+                    ->setSubject('З/п')
                     ->send();
             if ($result) {
                 $count++;

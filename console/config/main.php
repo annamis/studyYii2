@@ -27,6 +27,10 @@ return [
         'stringHelper' => [
             'class' => 'common\components\StringHelper',
         ],
+        'formatter' => [
+            'locale' => 'ru-RU',
+            'timeZone' => 'Europe/Kiev',
+       ],
     ],
     'params' => $params,
 ];
