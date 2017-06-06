@@ -7,6 +7,7 @@ use yii\db\Migration;
  */
 class m170525_083638_create_employee_table extends Migration
 {
+
     /**
      * @inheritdoc
      */
@@ -14,16 +15,17 @@ class m170525_083638_create_employee_table extends Migration
     {
         $this->createTable('employee', [
             'id' => $this->primaryKey(),
-            'last_name' => $this->string(255)->notNull(),
             'first_name' => $this->string(255)->notNull(),
-            'city' => $this->string(255)->notNull(),
-            'birth_date' => $this->date()->notNull(),
-            'hire_date' => $this->date(),
+            'last_name' => $this->string(255)->notNull(),
+            'middle_name' => $this->string(255),
+            'email' => $this->string(255)->unique()->notNull(),
+            'birth_date' => $this->date(),
+            'hire_date' => $this->date()->notNull(),
             'experience_date' => $this->date(),
-            'position' => $this->string(255),
+            'city' => $this->integer(11),
+            'position' => $this->string(255)->notNull(),
             'department' => $this->integer(11),
-            'code' => $this->integer(11)->notNull()->unique(),
-            'email' => $this->string(255)->unique(),
+            'id_code' => $this->string(255)->notNull()->unique(),
         ]);
     }
 
@@ -34,4 +36,5 @@ class m170525_083638_create_employee_table extends Migration
     {
         $this->dropTable('employee');
     }
+
 }

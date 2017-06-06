@@ -44,6 +44,5 @@ class MailerController extends \yii\console\Controller
         if($result) {
             Console::output("Info in log {$log}\n");
         }
-        
     }
 }

@@ -12,7 +12,8 @@ $this->title = 'My Yii Application';
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
-        <p><a class="btn btn-lg btn-success" href="<?php echo Url::to(['news/index']); ?>">Переход на страницу со списком новостей</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?php echo Url::to(['news/index']); ?>">Переход на страницу с новостями</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?php echo Url::to(['newsletter/subscribe']); ?>">Подписаться на рассылку</a></p>
     </div>
 
     <div class="body-content">
