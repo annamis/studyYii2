@@ -62,4 +62,8 @@ return [
         ],
     ],
     'params' => $params,
+    'aliases' => [
+        '@files' => '/var/www/project/frontend/web/files',
+        '@phpUp' => 'https://php-up.com/',
+    ],
 ];

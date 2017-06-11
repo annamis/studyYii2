@@ -68,4 +68,10 @@ class Employee extends Model
         return Yii::$app->db->createCommand($sql)->execute();
     }
 
+    public static function getBiggestSalary($count)
+    {
+        $count = intval($count);
+        $sql = 'SELECT * FROM employee ORDER BY salary DESC LIMIT ' . $count;
+        return Yii::$app->db->createCommand($sql)->queryAll();
+    }
 }
