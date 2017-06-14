@@ -74,4 +74,10 @@ class Employee extends Model
         $sql = 'SELECT * FROM employee ORDER BY salary DESC LIMIT ' . $count;
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
+    
+    public static function find()
+    {
+        $sql = 'SELECT * FROM employee';
+        return Yii::$app->db->createCommand($sql)->queryAll();
+    }
 }
