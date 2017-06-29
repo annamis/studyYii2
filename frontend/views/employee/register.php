@@ -1,11 +1,8 @@
 <?php
 /* @var $model frontend\models\Employee */
 
-/* example flash message 
-  if (Yii::$app->session->hasFlash('subscribeStatus')) {
-  echo Yii::$app->session->getFlash('subscribeStatus');
-  }
- */
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 if ($model->hasErrors()) {
     echo '<pre>';
@@ -15,6 +12,22 @@ if ($model->hasErrors()) {
 ?>
 <h2>Регистрация нового сотрудника</h2>
 
+<?php $form = ActiveForm::begin(); ?>
+
+<?php echo $form->field($model, 'firstName'); ?>
+<?php echo $form->field($model, 'lastName'); ?>
+<?php echo $form->field($model, 'middleName')->passwordInput(); ?>
+<?php echo $form->field($model, 'email'); ?>
+<?php echo $form->field($model, 'birthDate')->hint('Введите дату в формате 1990-12-12'); ?>
+<?php echo $form->field($model, 'hireDate'); ?>
+<?php echo $form->field($model, 'city')->dropDownList($model->getCitiesList()); ?>
+<?php echo $form->field($model, 'position'); ?>
+<?php echo $form->field($model, 'idCode'); ?>
+<?php echo Html::submitButton('Send', ['class' => 'btn btn-primary']); ?>
+
+<?php ActiveForm::end(); ?>
+
+<?php /*
 <form method="post">
     <p>Имя *</p>
     <input type="text" name="firstName">
@@ -59,3 +72,5 @@ if ($model->hasErrors()) {
 
     <input class="btn btn-lg btn-info" type="submit">
 </form>
+ * 
+ */

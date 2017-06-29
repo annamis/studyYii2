@@ -60,20 +60,16 @@ class EmployeeController extends Controller
         $model = new Employee();
         $model->scenario = Employee::SCENARIO_EMPLOYEE_REGISTER;
 
-        $formData = Yii::$app->request->post();
-
-        if (Yii::$app->request->isPost) {
-
-            //Массовое присваивание заполняет атрибуты модели путем присвоения входных данных свойству yii\base\Model::$attributes
-            $model->attributes = $formData;
+        //Если данные загружены
+        if ($model->load(Yii::$app->request->post())) {
 
             if ($model->validate() && $model->save()) {
-                Yii::$app->session->setFlash('info', 'Регистрация прошла успешно');
+                Yii::$app->session->setFlash('success', 'Registered!');
             }
         }
 
         return $this->render('register', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -95,7 +91,7 @@ class EmployeeController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
