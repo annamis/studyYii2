@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Book;
+use frontend\models\Publisher;
 use Yii;
 
 class BookshopController extends \yii\web\Controller
@@ -15,15 +16,16 @@ class BookshopController extends \yii\web\Controller
         //создание объекта запроса к БД. find() вернет объет класса ActiveQuery
 //        $bookList = Book::find()->where($condition)->orderBy('date_published')->limit(2)->all();
         $bookList = Book::find()->orderBy('date_published')->limit(20)->all();
-        
+
         return $this->render('index', [
-            'bookList' => $bookList,
+                    'bookList' => $bookList,
         ]);
     }
 
     public function actionCreate()
     {
         $book = new Book;
+        $publishers = Publisher::getList();
 
         //если данные успешно загружены из модели и сохранены
         if ($book->load(Yii::$app->request->post()) && $book->save()) {
@@ -36,6 +38,7 @@ class BookshopController extends \yii\web\Controller
 
         return $this->render('create', [
                     'book' => $book,
+                    'publishers' => $publishers,
         ]);
     }
 
