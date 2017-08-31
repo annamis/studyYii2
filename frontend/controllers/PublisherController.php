@@ -8,12 +8,14 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\controllers\behaviors\AccessBehavior;
 
 /**
  * PublisherController implements the CRUD actions for Publisher model.
  */
 class PublisherController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -26,6 +28,7 @@ class PublisherController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            AccessBehavior::className(),
         ];
     }
 
@@ -48,7 +51,7 @@ class PublisherController extends Controller
         ]);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -60,7 +63,7 @@ class PublisherController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -77,7 +80,7 @@ class PublisherController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -96,7 +99,7 @@ class PublisherController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -129,4 +132,5 @@ class PublisherController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

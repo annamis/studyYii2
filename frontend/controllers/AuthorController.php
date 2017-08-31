@@ -4,12 +4,21 @@ namespace frontend\controllers;
 
 use frontend\models\Author;
 use Yii;
+use frontend\controllers\behaviors\AccessBehavior;
 
 class AuthorController extends \yii\web\Controller
 {
+    
+    public function behaviors()
+    {
+        return [
+            AccessBehavior::className(),
+        ];
+    }
 
     public function actionCreate()
     {
+
         $model = new Author();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -24,6 +33,7 @@ class AuthorController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
+
         $model = Author::findOne($id);
 
         if ($model->delete()) {
@@ -35,6 +45,7 @@ class AuthorController extends \yii\web\Controller
 
     public function actionIndex()
     {
+
         $authorsList = Author::find()->all();
         return $this->render('index', [
                     'authorsList' => $authorsList,
@@ -44,6 +55,7 @@ class AuthorController extends \yii\web\Controller
     //в author/index передаем id
     public function actionUpdate($id)
     {
+
         // найти автора по id
         $model = Author::findOne($id);
 
